@@ -3,7 +3,11 @@ apply from: "config.gradle"
 
 buildscript {
     repositories {
-        jcenter()
+//        jcenter()
+        //阿里云的maven库地址  二选一
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        // maven{ url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+        maven { url 'https://maven.aliyun.com/repository/google' }
         maven {
             url 'https://maven.google.com/'
             name 'Google'
@@ -22,7 +26,11 @@ allprojects {
     group = GROUP
 
     repositories {
-        jcenter()
+//        jcenter()
+        //阿里云的maven库地址  二选一
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        // maven{ url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+        maven { url 'https://maven.aliyun.com/repository/google' }
         maven {
             url 'https://maven.google.com/'
             name 'Google'

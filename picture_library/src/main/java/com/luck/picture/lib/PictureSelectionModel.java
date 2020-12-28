@@ -2,6 +2,7 @@ package com.luck.picture.lib;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.text.TextUtils;
 
@@ -712,6 +713,15 @@ public class PictureSelectionModel {
      */
     public PictureSelectionModel cutOutQuality(int cutQuality) {
         selectionConfig.cropCompressQuality = cutQuality;
+        return this;
+    }
+
+    /**
+     * @param format 设置裁剪保存类型
+     * @return
+     */
+    public PictureSelectionModel cutCompressionFormat(Bitmap.CompressFormat format) {
+        selectionConfig.cropCompressionFormat = format;
         return this;
     }
 

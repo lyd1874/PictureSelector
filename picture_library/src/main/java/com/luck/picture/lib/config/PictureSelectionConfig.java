@@ -1,6 +1,7 @@
 package com.luck.picture.lib.config;
 
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -20,6 +21,7 @@ import com.luck.picture.lib.style.PictureCropParameterStyle;
 import com.luck.picture.lib.style.PictureParameterStyle;
 import com.luck.picture.lib.style.PictureSelectorUIStyle;
 import com.luck.picture.lib.style.PictureWindowAnimationStyle;
+import com.yalantis.ucrop.UCropActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +59,8 @@ public final class PictureSelectionConfig implements Parcelable {
     public int minVideoSelectNum;
     public int videoQuality;
     public int cropCompressQuality;
+    //裁剪后输出类型
+    public Bitmap.CompressFormat cropCompressionFormat;
     public int videoMaxSecond;
     public int videoMinSecond;
     public int recordVideoSecond;
@@ -178,6 +182,7 @@ public final class PictureSelectionConfig implements Parcelable {
         videoQuality = 1;
         language = -1;
         cropCompressQuality = 90;
+        cropCompressionFormat = UCropActivity.DEFAULT_COMPRESS_FORMAT;
         videoMaxSecond = 0;
         videoMinSecond = 0;
         filterFileSize = -1;
@@ -324,6 +329,7 @@ public final class PictureSelectionConfig implements Parcelable {
         dest.writeInt(this.minVideoSelectNum);
         dest.writeInt(this.videoQuality);
         dest.writeInt(this.cropCompressQuality);
+        dest.writeSerializable(this.cropCompressionFormat);
         dest.writeInt(this.videoMaxSecond);
         dest.writeInt(this.videoMinSecond);
         dest.writeInt(this.recordVideoSecond);
@@ -428,6 +434,7 @@ public final class PictureSelectionConfig implements Parcelable {
         this.minVideoSelectNum = in.readInt();
         this.videoQuality = in.readInt();
         this.cropCompressQuality = in.readInt();
+        this.cropCompressionFormat = (Bitmap.CompressFormat) in.readSerializable();
         this.videoMaxSecond = in.readInt();
         this.videoMinSecond = in.readInt();
         this.recordVideoSecond = in.readInt();

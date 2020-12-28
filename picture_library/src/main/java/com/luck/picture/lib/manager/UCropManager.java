@@ -178,6 +178,7 @@ public class UCropManager {
         options.isMultipleSkipCrop(config.isMultipleSkipCrop);
         options.setHideBottomControls(config.hideBottomControls);
         options.setCompressionQuality(config.cropCompressQuality);
+        options.setCompressionFormat(config.cropCompressionFormat);
         options.setRenameCropFileName(config.renameCropFileName);
         options.isCamera(config.camera);
         options.setNavBarColor(cropNavBarColor);
