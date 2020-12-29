@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.luck.picture.lib.R;
 import com.luck.picture.lib.config.PictureMimeType;
 
+import java.math.BigDecimal;
 import java.util.regex.Pattern;
 
 /**
@@ -107,5 +108,22 @@ public class StringUtils {
     public static final int hash(Object key) {
         int h;
         return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+    }
+
+    /**
+     * 移除小数点后面的0
+     * @param target
+     * @return
+     */
+    public static String removeDecimalZero(float target){
+        BigDecimal value = new BigDecimal(target);
+        String noZeros = value.stripTrailingZeros().toPlainString();
+        if(noZeros.endsWith(".0")){
+            return noZeros.substring(0,noZeros.length()-2);
+        }
+        if(noZeros.endsWith(".00")){
+            return noZeros.substring(0,noZeros.length()-3);
+        }
+        return noZeros;
     }
 }

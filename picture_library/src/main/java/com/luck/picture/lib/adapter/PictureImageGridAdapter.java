@@ -23,6 +23,7 @@ import com.luck.picture.lib.config.PictureSelectionConfig;
 import com.luck.picture.lib.dialog.PictureCustomDialog;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.listener.OnPhotoSelectChangedListener;
+import com.luck.picture.lib.model.LocalMediaPageLoader;
 import com.luck.picture.lib.tools.AnimUtils;
 import com.luck.picture.lib.tools.AttrsUtils;
 import com.luck.picture.lib.tools.DateUtils;
@@ -306,6 +307,11 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
                             showPromptDialog(context.getString(R.string.picture_choose_max_seconds, config.videoMaxSecond / 1000));
                             return;
                         }
+                        if (config.filterFileSize > 0 && image.getSize() > config.filterFileSize * LocalMediaPageLoader.FILE_SIZE_UNIT) {
+                            String sizeStr = StringUtils.removeDecimalZero(config.filterFileSize);
+                            showPromptDialog(context.getString(R.string.picture_choose_max_size, sizeStr));
+                            return;
+                        }
                     }
                     imageSelectChangedListener.onPictureClick(image, index);
                 } else {
@@ -549,6 +555,11 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
                     showPromptDialog(context.getString(R.string.picture_choose_max_seconds, config.videoMaxSecond / 1000));
                     return;
                 }
+                if (!isChecked && config.filterFileSize > 0 && image.getSize() > config.filterFileSize * LocalMediaPageLoader.FILE_SIZE_UNIT) {
+                    String sizeStr = StringUtils.removeDecimalZero(config.filterFileSize);
+                    showPromptDialog(context.getString(R.string.picture_choose_max_size, sizeStr));
+                    return;
+                }
             } else {
                 if (count >= config.maxSelectNum && !isChecked) {
                     showPromptDialog(context.getString(R.string.picture_message_max_num, config.maxSelectNum));
@@ -590,6 +601,12 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
 
                     if (!isChecked && config.videoMaxSecond > 0 && image.getDuration() > config.videoMaxSecond) {
                         showPromptDialog(context.getString(R.string.picture_choose_max_seconds, config.videoMaxSecond / 1000));
+                        return;
+                    }
+
+                    if (!isChecked && config.filterFileSize > 0 && image.getSize() > config.filterFileSize * LocalMediaPageLoader.FILE_SIZE_UNIT) {
+                        String sizeStr = StringUtils.removeDecimalZero(config.filterFileSize);
+                        showPromptDialog(context.getString(R.string.picture_choose_max_size, sizeStr));
                         return;
                     }
                 }

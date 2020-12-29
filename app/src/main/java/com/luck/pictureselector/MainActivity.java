@@ -483,7 +483,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .isCompress(cb_compress.isChecked())// 是否压缩
                         //.compressQuality(80)// 图片压缩后输出质量 0~ 100
                         .synOrAsy(false)//同步true或异步false 压缩 默认同步
-                        //.queryMaxFileSize(10)// 只查多少M以内的图片、视频、音频  单位M
+                        .queryMaxFileSizeDisplay(true)//是否显示超出限定值的内容
+                        .queryMaxFileSize(2)// 只查多少M以内的图片、视频、音频  单位M
                         //.compressSavePath(getPath())//压缩图片保存地址
                         //.sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效 注：已废弃
                         //.glideOverride(160, 160)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度 注：已废弃
@@ -504,8 +505,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .isOpenClickSound(cb_voice.isChecked())// 是否开启点击声音
                         .selectionData(mAdapter.getData())// 是否传入已选图片
                         //.isDragFrame(false)// 是否可拖动裁剪框(固定)
-                        //.videoMinSecond(10)// 查询多少秒以内的视频
-                        //.videoMaxSecond(15)// 查询多少秒以内的视频
+//                        .videoSecondDisplay(true) //是否显示超出限定值的内容
+//                        .videoMinSecond(1)// 查询多少秒以内的视频
+//                        .videoMaxSecond(3)// 查询多少秒以内的视频
                         //.recordVideoSecond(10)//录制视频秒数 默认60s
                         //.isPreviewEggs(true)// 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中)
                         //.cropCompressQuality(90)// 注：已废弃 改用cutOutQuality()

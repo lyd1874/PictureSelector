@@ -12,4 +12,5 @@
     <string name="ucrop_crop">Crop</string>
 
     <string name="ucrop_gif_tag">gif</string>
+    <string name="picture_choose_max_size">最大只能选择 %1$sM 以内的视频</string>
 </resources>

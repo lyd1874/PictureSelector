@@ -57,7 +57,7 @@ public final class LocalMediaPageLoader {
     /**
      * unit
      */
-    private static final long FILE_SIZE_UNIT = 1024 * 1024L;
+    public static final long FILE_SIZE_UNIT = 1024 * 1024L;
     /**
      * Image
      */
@@ -327,17 +327,17 @@ public final class LocalMediaPageLoader {
                                 String folderName = data.getString(folderNameColumn);
                                 String fileName = data.getString(fileNameColumn);
                                 long bucket_id = data.getLong(bucketIdColumn);
-                                if (config.filterFileSize > 0) {
+                                if (!config.filterFileSizeDisplay && config.filterFileSize > 0) {
                                     if (size > config.filterFileSize * FILE_SIZE_UNIT) {
                                         continue;
                                     }
                                 }
                                 if (PictureMimeType.isHasVideo(mimeType)) {
-                                    if (config.videoMinSecond > 0 && duration < config.videoMinSecond) {
+                                    if (!config.videoSecondDisplay && config.videoMinSecond > 0 && duration < config.videoMinSecond) {
                                         // If you set the minimum number of seconds of video to display
                                         continue;
                                     }
-                                    if (config.videoMaxSecond > 0 && duration > config.videoMaxSecond) {
+                                    if (!config.videoSecondDisplay && config.videoMaxSecond > 0 && duration > config.videoMaxSecond) {
                                         // If you set the maximum number of seconds of video to display
                                         continue;
                                     }

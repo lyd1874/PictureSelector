@@ -618,6 +618,15 @@ public class PictureSelectionModel {
     }
 
     /**
+     * @param display 是否显示不符合要求的数据
+     * @return
+     */
+    public PictureSelectionModel videoSecondDisplay(boolean display) {
+        selectionConfig.videoSecondDisplay = display;
+        return this;
+    }
+
+    /**
      * @param videoMaxSecond selection video max second
      * @return
      */
@@ -895,6 +904,15 @@ public class PictureSelectionModel {
         return this;
     }
 
+    /**
+     *
+     * @param display 是否显示不符合要求的数据，true显示，通过弹窗提醒，false隐藏
+     * @return
+     */
+    public PictureSelectionModel queryMaxFileSizeDisplay(boolean display) {
+        selectionConfig.filterFileSizeDisplay = display;
+        return this;
+    }
 
     /**
      * # file size The unit is M

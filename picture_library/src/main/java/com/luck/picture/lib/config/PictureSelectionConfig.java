@@ -61,6 +61,8 @@ public final class PictureSelectionConfig implements Parcelable {
     public int cropCompressQuality;
     //裁剪后输出类型
     public Bitmap.CompressFormat cropCompressionFormat;
+    //是否显示不符合要求的数据，true显示，通过弹窗提醒，false隐藏
+    public boolean videoSecondDisplay;
     public int videoMaxSecond;
     public int videoMinSecond;
     public int recordVideoSecond;
@@ -72,6 +74,8 @@ public final class PictureSelectionConfig implements Parcelable {
     public int cropWidth;
     public int cropHeight;
     public int compressQuality;
+    //是否显示不符合要求的数据，true显示，通过弹窗提醒，false隐藏
+    public boolean filterFileSizeDisplay;
     public float filterFileSize;
     public int language;
     public boolean isMultipleRecyclerAnimation;
@@ -183,8 +187,10 @@ public final class PictureSelectionConfig implements Parcelable {
         language = -1;
         cropCompressQuality = 90;
         cropCompressionFormat = UCropActivity.DEFAULT_COMPRESS_FORMAT;
+        videoSecondDisplay = true;
         videoMaxSecond = 0;
         videoMinSecond = 0;
+        filterFileSizeDisplay = true;
         filterFileSize = -1;
         recordVideoSecond = 60;
         recordVideoMinSecond = 0;
@@ -330,6 +336,7 @@ public final class PictureSelectionConfig implements Parcelable {
         dest.writeInt(this.videoQuality);
         dest.writeInt(this.cropCompressQuality);
         dest.writeSerializable(this.cropCompressionFormat);
+        dest.writeByte(this.videoSecondDisplay ? (byte) 1 : (byte) 0);
         dest.writeInt(this.videoMaxSecond);
         dest.writeInt(this.videoMinSecond);
         dest.writeInt(this.recordVideoSecond);
@@ -341,6 +348,7 @@ public final class PictureSelectionConfig implements Parcelable {
         dest.writeInt(this.cropWidth);
         dest.writeInt(this.cropHeight);
         dest.writeInt(this.compressQuality);
+        dest.writeByte(this.filterFileSizeDisplay ? (byte) 1 : (byte) 0);
         dest.writeFloat(this.filterFileSize);
         dest.writeInt(this.language);
         dest.writeByte(this.isMultipleRecyclerAnimation ? (byte) 1 : (byte) 0);
@@ -435,6 +443,7 @@ public final class PictureSelectionConfig implements Parcelable {
         this.videoQuality = in.readInt();
         this.cropCompressQuality = in.readInt();
         this.cropCompressionFormat = (Bitmap.CompressFormat) in.readSerializable();
+        this.videoSecondDisplay = in.readByte() != 0;
         this.videoMaxSecond = in.readInt();
         this.videoMinSecond = in.readInt();
         this.recordVideoSecond = in.readInt();
@@ -446,6 +455,7 @@ public final class PictureSelectionConfig implements Parcelable {
         this.cropWidth = in.readInt();
         this.cropHeight = in.readInt();
         this.compressQuality = in.readInt();
+        this.filterFileSizeDisplay = in.readByte() != 0;
         this.filterFileSize = in.readFloat();
         this.language = in.readInt();
         this.isMultipleRecyclerAnimation = in.readByte() != 0;
