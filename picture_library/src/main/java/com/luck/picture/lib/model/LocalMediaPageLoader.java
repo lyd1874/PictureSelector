@@ -327,8 +327,11 @@ public final class LocalMediaPageLoader {
                                 String folderName = data.getString(folderNameColumn);
                                 String fileName = data.getString(fileNameColumn);
                                 long bucket_id = data.getLong(bucketIdColumn);
-                                if (!config.filterFileSizeDisplay && config.filterFileSize > 0) {
-                                    if (size > config.filterFileSize * FILE_SIZE_UNIT) {
+                                if (!config.filterFileSizeDisplay) {
+                                    if (config.filterFileSizeToVideo > 0 && size > config.filterFileSizeToVideo * FILE_SIZE_UNIT) {
+                                        continue;
+                                    }
+                                    if (config.filterFileSizeToImage > 0 && size > config.filterFileSizeToImage * FILE_SIZE_UNIT) {
                                         continue;
                                     }
                                 }

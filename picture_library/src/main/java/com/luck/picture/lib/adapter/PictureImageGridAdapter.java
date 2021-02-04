@@ -307,8 +307,15 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
                             showPromptDialog(context.getString(R.string.picture_choose_max_seconds, config.videoMaxSecond / 1000));
                             return;
                         }
-                        if (config.filterFileSize > 0 && image.getSize() > config.filterFileSize * LocalMediaPageLoader.FILE_SIZE_UNIT) {
-                            String sizeStr = StringUtils.removeDecimalZero(config.filterFileSize);
+                        if (config.filterFileSizeToVideo > 0 && image.getSize() > config.filterFileSizeToVideo * LocalMediaPageLoader.FILE_SIZE_UNIT) {
+                            String sizeStr = StringUtils.removeDecimalZero(config.filterFileSizeToVideo);
+                            showPromptDialog(context.getString(R.string.picture_choose_max_size, sizeStr));
+                            return;
+                        }
+                    }
+                    if (PictureMimeType.isHasImage(image.getMimeType())) {
+                        if (config.filterFileSizeToImage > 0 && image.getSize() > config.filterFileSizeToImage * LocalMediaPageLoader.FILE_SIZE_UNIT) {
+                            String sizeStr = StringUtils.removeDecimalZero(config.filterFileSizeToImage);
                             showPromptDialog(context.getString(R.string.picture_choose_max_size, sizeStr));
                             return;
                         }
@@ -555,12 +562,17 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
                     showPromptDialog(context.getString(R.string.picture_choose_max_seconds, config.videoMaxSecond / 1000));
                     return;
                 }
-                if (!isChecked && config.filterFileSize > 0 && image.getSize() > config.filterFileSize * LocalMediaPageLoader.FILE_SIZE_UNIT) {
-                    String sizeStr = StringUtils.removeDecimalZero(config.filterFileSize);
+                if (!isChecked && config.filterFileSizeToVideo > 0 && image.getSize() > config.filterFileSizeToVideo * LocalMediaPageLoader.FILE_SIZE_UNIT) {
+                    String sizeStr = StringUtils.removeDecimalZero(config.filterFileSizeToVideo);
                     showPromptDialog(context.getString(R.string.picture_choose_max_size, sizeStr));
                     return;
                 }
             } else {
+                if (!isChecked && config.filterFileSizeToImage > 0 && image.getSize() > config.filterFileSizeToImage * LocalMediaPageLoader.FILE_SIZE_UNIT) {
+                    String sizeStr = StringUtils.removeDecimalZero(config.filterFileSizeToImage);
+                    showPromptDialog(context.getString(R.string.picture_choose_max_size_image, sizeStr));
+                    return;
+                }
                 if (count >= config.maxSelectNum && !isChecked) {
                     showPromptDialog(context.getString(R.string.picture_message_max_num, config.maxSelectNum));
                     return;
@@ -588,6 +600,12 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
                     showPromptDialog(context.getString(R.string.picture_choose_max_seconds, config.videoMaxSecond / 1000));
                     return;
                 }
+
+                if (!isChecked && config.filterFileSizeToVideo > 0 && image.getSize() > config.filterFileSizeToVideo * LocalMediaPageLoader.FILE_SIZE_UNIT) {
+                    String sizeStr = StringUtils.removeDecimalZero(config.filterFileSizeToVideo);
+                    showPromptDialog(context.getString(R.string.picture_choose_max_size, sizeStr));
+                    return;
+                }
             } else {
                 if (count >= config.maxSelectNum && !isChecked) {
                     showPromptDialog(StringUtils.getMsg(context, mimeType, config.maxSelectNum));
@@ -604,8 +622,8 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
                         return;
                     }
 
-                    if (!isChecked && config.filterFileSize > 0 && image.getSize() > config.filterFileSize * LocalMediaPageLoader.FILE_SIZE_UNIT) {
-                        String sizeStr = StringUtils.removeDecimalZero(config.filterFileSize);
+                    if (!isChecked && config.filterFileSizeToVideo > 0 && image.getSize() > config.filterFileSizeToVideo * LocalMediaPageLoader.FILE_SIZE_UNIT) {
+                        String sizeStr = StringUtils.removeDecimalZero(config.filterFileSizeToVideo);
                         showPromptDialog(context.getString(R.string.picture_choose_max_size, sizeStr));
                         return;
                     }

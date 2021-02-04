@@ -915,13 +915,24 @@ public class PictureSelectionModel {
     }
 
     /**
-     * # file size The unit is M
+     * # video file size The unit is M
      *
      * @param fileSize Filter file size
      * @return
      */
-    public PictureSelectionModel queryMaxFileSize(float fileSize) {
-        selectionConfig.filterFileSize = fileSize;
+    public PictureSelectionModel queryMaxFileSizeToVideo(float fileSize) {
+        selectionConfig.filterFileSizeToVideo = fileSize;
+        return this;
+    }
+
+    /**
+     * # image file size The unit is M
+     *
+     * @param fileSize Filter file size
+     * @return
+     */
+    public PictureSelectionModel queryMaxFileSizeToImage(float fileSize) {
+        selectionConfig.filterFileSizeToImage = fileSize;
         return this;
     }
 

@@ -76,7 +76,8 @@ public final class PictureSelectionConfig implements Parcelable {
     public int compressQuality;
     //是否显示不符合要求的数据，true显示，通过弹窗提醒，false隐藏
     public boolean filterFileSizeDisplay;
-    public float filterFileSize;
+    public float filterFileSizeToVideo;
+    public float filterFileSizeToImage;
     public int language;
     public boolean isMultipleRecyclerAnimation;
     public boolean isMultipleSkipCrop;
@@ -191,7 +192,8 @@ public final class PictureSelectionConfig implements Parcelable {
         videoMaxSecond = 0;
         videoMinSecond = 0;
         filterFileSizeDisplay = true;
-        filterFileSize = -1;
+        filterFileSizeToVideo = -1;
+        filterFileSizeToImage = -1;
         recordVideoSecond = 60;
         recordVideoMinSecond = 0;
         compressQuality = 80;
@@ -349,7 +351,8 @@ public final class PictureSelectionConfig implements Parcelable {
         dest.writeInt(this.cropHeight);
         dest.writeInt(this.compressQuality);
         dest.writeByte(this.filterFileSizeDisplay ? (byte) 1 : (byte) 0);
-        dest.writeFloat(this.filterFileSize);
+        dest.writeFloat(this.filterFileSizeToVideo);
+        dest.writeFloat(this.filterFileSizeToImage);
         dest.writeInt(this.language);
         dest.writeByte(this.isMultipleRecyclerAnimation ? (byte) 1 : (byte) 0);
         dest.writeByte(this.isMultipleSkipCrop ? (byte) 1 : (byte) 0);
@@ -456,7 +459,8 @@ public final class PictureSelectionConfig implements Parcelable {
         this.cropHeight = in.readInt();
         this.compressQuality = in.readInt();
         this.filterFileSizeDisplay = in.readByte() != 0;
-        this.filterFileSize = in.readFloat();
+        this.filterFileSizeToVideo = in.readFloat();
+        this.filterFileSizeToImage = in.readFloat();
         this.language = in.readInt();
         this.isMultipleRecyclerAnimation = in.readByte() != 0;
         this.isMultipleSkipCrop = in.readByte() != 0;
